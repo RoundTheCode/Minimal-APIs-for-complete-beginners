@@ -1,0 +1,1 @@
+Server=(localdb)\\MSSQLLocalDB; Database=ToDo; Trusted_Connection=true; Trust Server Certificate=true; MultipleActiveResultSets=true; Integrated Security=true;
