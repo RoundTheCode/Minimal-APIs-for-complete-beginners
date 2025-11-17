@@ -3,6 +3,8 @@ using ToDo.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDataRepositories();
+
 builder.Services.AddToDoDbContext(
     builder.Configuration
 );
