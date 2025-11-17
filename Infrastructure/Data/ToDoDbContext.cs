@@ -9,4 +9,12 @@ public class ToDoDbContext : DbContext
     {
 
     }
+
+    protected override void OnModelCreating
+        (ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(
+            typeof(ToDoDbContext).Assembly
+        );
+    }
 }
