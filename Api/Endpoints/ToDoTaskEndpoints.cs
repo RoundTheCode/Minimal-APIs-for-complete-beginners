@@ -19,6 +19,10 @@ public static class ToDoTaskEndpoints
             .ProducesValidationProblem()
             .ProducesProblem(StatusCodes.Status500InternalServerError);
 
+        group.MapPut("{id:int}", Update)
+            .ProducesValidationProblem()
+            .ProducesProblem(StatusCodes.Status500InternalServerError);
+
         return app;
     }
 
@@ -45,5 +49,19 @@ public static class ToDoTaskEndpoints
         await toDoTaskService.Create(createToDoTask);
 
         return TypedResults.Created();
+    }
+
+    public static async Task<Results<NoContent, NotFound>> Update(
+        int id,
+        UpdateToDoTaskDto updateToDoTask,
+        IToDoTaskService toDoTaskService
+        )
+    {
+        if (!await toDoTaskService.Update(id, updateToDoTask))
+        {
+            return TypedResults.NotFound();
+        }
+
+        return TypedResults.NoContent();
     }
 }
