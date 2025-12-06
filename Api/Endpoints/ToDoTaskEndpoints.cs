@@ -12,11 +12,29 @@ public static class ToDoTaskEndpoints
     {
         var group = app.MapGroup("/api/to-do-tasks");
 
+        group.MapGet("{id:int}", Get)
+            .ProducesProblem(StatusCodes.Status500InternalServerError);
+
         group.MapPost("/", Create)
             .ProducesValidationProblem()
             .ProducesProblem(StatusCodes.Status500InternalServerError);
 
         return app;
+    }
+
+    public static async Task<Results<Ok<GetToDoTaskDto>, NotFound>> Get(
+        int id,
+        IToDoTaskService toDoTaskService
+        )
+    {
+        var toDoTask = await toDoTaskService.Get(id);
+
+        if (toDoTask == null)
+        {
+            return TypedResults.NotFound();
+        }
+
+        return TypedResults.Ok(toDoTask);
     }
 
     public static async Task<Created> Create(

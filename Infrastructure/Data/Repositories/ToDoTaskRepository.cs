@@ -1,4 +1,5 @@
-﻿using ToDo.Application.Common.Dto;
+﻿using Microsoft.EntityFrameworkCore;
+using ToDo.Application.Common.Dto;
 using ToDo.Application.Data.Repositories;
 using ToDo.Infrastructure.Data.Entities;
 
@@ -12,6 +13,20 @@ public class ToDoTaskRepository : IToDoTaskRepository
     {
         _dbContext = dbContext;
     }
+
+    public async Task<GetToDoTaskDto?> Get(int id)
+    {
+        return await _dbContext.ToDoTasks
+            .Where(x => x.Id == id &&
+            !x.Deleted.HasValue)
+            .Select(x => new GetToDoTaskDto
+            {
+                Id = x.Id,
+                Task = x.Task,
+                Created = x.Created
+            }).SingleOrDefaultAsync();
+    }
+
 
     public async Task Create(CreateToDoTaskDto createToDoTask)
     {
