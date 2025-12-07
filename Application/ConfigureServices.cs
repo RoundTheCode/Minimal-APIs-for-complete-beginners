@@ -3,6 +3,9 @@ using ToDo.Application.Services;
 using ToDo.Application.Services.Implementations;
 using Microsoft.AspNetCore.Builder;
 using Serilog;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+using ToDo.Application.Common.Handlers;
 
 namespace ToDo.Application;
 
@@ -29,5 +32,19 @@ public static class ConfigureServices
         });
 
         return host;
+    }
+
+    public static IServiceCollection AddExceptionHandler(
+        this IServiceCollection services,
+        IWebHostEnvironment environment
+        )
+    {
+        if (!environment.IsDevelopment())
+        {
+            services.AddExceptionHandler<GlobalExceptionHandler>();
+            services.AddProblemDetails();
+        }
+
+        return services;
     }
 }
