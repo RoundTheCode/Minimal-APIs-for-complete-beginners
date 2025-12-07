@@ -1,12 +1,19 @@
 using ToDo.Api.Endpoints;
 using ToDo.Application;
 using ToDo.Infrastructure;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddApplicationServices();
 builder.Services.AddDataRepositories();
+
+builder.Services.ConfigureHttpJsonOptions(options =>
+{
+    options.SerializerOptions.NumberHandling =
+        JsonNumberHandling.Strict;
+});
 
 builder.Services.AddToDoDbContext(
     builder.Configuration

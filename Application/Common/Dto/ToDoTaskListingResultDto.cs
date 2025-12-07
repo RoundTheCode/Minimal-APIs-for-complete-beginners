@@ -2,7 +2,7 @@
 
 public class ToDoTaskListingResultDto
 {
-    public IList<GetToDoTaskDto> Results = [];
+    public IList<GetToDoTaskDto> Results { get; set; } = [];
 
     public int TotalPages { get; set; }
 
