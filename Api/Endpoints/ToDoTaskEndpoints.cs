@@ -23,6 +23,9 @@ public static class ToDoTaskEndpoints
             .ProducesValidationProblem()
             .ProducesProblem(StatusCodes.Status500InternalServerError);
 
+        group.MapDelete("{id:int}", Delete)
+            .ProducesProblem(StatusCodes.Status500InternalServerError);
+
         return app;
     }
 
@@ -58,6 +61,19 @@ public static class ToDoTaskEndpoints
         )
     {
         if (!await toDoTaskService.Update(id, updateToDoTask))
+        {
+            return TypedResults.NotFound();
+        }
+
+        return TypedResults.NoContent();
+    }
+
+    public static async Task<Results<NoContent, NotFound>> Delete(
+        int id,        
+        IToDoTaskService toDoTaskService
+        )
+    {
+        if (!await toDoTaskService.Delete(id))
         {
             return TypedResults.NotFound();
         }

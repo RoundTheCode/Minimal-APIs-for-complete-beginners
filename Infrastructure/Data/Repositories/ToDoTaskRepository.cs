@@ -57,4 +57,22 @@ public class ToDoTaskRepository : IToDoTaskRepository
 
         return true;
     }
+
+    public async Task<bool> Delete(int id)
+    {
+        var entity = await _dbContext.ToDoTasks
+            .SingleOrDefaultAsync(x => x.Id == id &&
+             !x.Deleted.HasValue);
+
+        if (entity == null)
+        {
+            return false;
+        }
+
+        entity.Deleted = DateTime.UtcNow;
+
+        await _dbContext.SaveChangesAsync();
+
+        return true;
+    }
 }

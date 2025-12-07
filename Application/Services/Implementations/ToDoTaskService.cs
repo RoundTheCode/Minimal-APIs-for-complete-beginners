@@ -27,4 +27,9 @@ public class ToDoTaskService : IToDoTaskService
     {
         return await _toDoTaskRepository.Update(id, updateToDoTask);
     }
+
+    public async Task<bool> Delete(int id)
+    {
+        return await _toDoTaskRepository.Delete(id);
+    }
 }
