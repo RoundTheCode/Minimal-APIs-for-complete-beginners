@@ -26,6 +26,8 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddValidation();
 
+builder.Host.AddSerilogLogging();
+
 var app = builder.Build();
 
 app.MapToDoTaskEndpoints();
