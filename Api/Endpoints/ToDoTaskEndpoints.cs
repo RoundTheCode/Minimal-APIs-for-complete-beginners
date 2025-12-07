@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using ToDo.Application.Common.Dto;
 using ToDo.Application.Services;
+using ToDo.Application.Common.Filters;
 
 namespace ToDo.Api.Endpoints;
 
@@ -11,6 +12,7 @@ public static class ToDoTaskEndpoints
         )
     {
         var group = app.MapGroup("/api/to-do-tasks")
+            .AddEndpointFilter<ToDoTaskEndpointFilter>()
             .ProducesProblem(StatusCodes.Status500InternalServerError);
 
         group.MapGet("{id:int}", Get);

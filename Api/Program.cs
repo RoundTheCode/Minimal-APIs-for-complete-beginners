@@ -2,12 +2,14 @@ using ToDo.Api.Endpoints;
 using ToDo.Application;
 using ToDo.Infrastructure;
 using System.Text.Json.Serialization;
+using Microsoft.FeatureManagement;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddApplicationServices();
 builder.Services.AddDataRepositories();
+builder.Services.AddFeatureManagement();
 
 builder.Services.ConfigureHttpJsonOptions(options =>
 {
