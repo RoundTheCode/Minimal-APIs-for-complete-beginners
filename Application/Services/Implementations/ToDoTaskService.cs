@@ -17,6 +17,12 @@ public class ToDoTaskService : IToDoTaskService
         return await _toDoTaskRepository.Get(id);
     }
 
+    public async Task<ToDoTaskListingResultDto> GetListing(
+        ToDoTaskListingDto listing)
+    {
+        return await _toDoTaskRepository.GetListing(listing);
+    }
+
     public async Task Create(CreateToDoTaskDto createToDoTask)
     {
         await _toDoTaskRepository.Create(createToDoTask);
