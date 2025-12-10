@@ -6,6 +6,7 @@ using Serilog;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using ToDo.Application.Common.Handlers;
+using ToDo.Application.Common.Options;
 
 namespace ToDo.Application;
 
@@ -44,6 +45,16 @@ public static class ConfigureServices
             services.AddExceptionHandler<GlobalExceptionHandler>();
             services.AddProblemDetails();
         }
+
+        return services;
+    }
+
+    public static IServiceCollection AddConfigurationOptions(
+        this IServiceCollection services
+        )
+    {
+        services.AddOptions<ApiOptions>()
+            .BindConfiguration("Api");
 
         return services;
     }
