@@ -32,12 +32,11 @@ public static class ToDoTaskEndpoints
     }
 
     public static async Task<Results<
-        Ok<GetToDoTaskDto>, NotFound, InternalServerError>> 
-        Get(
-        int id,
-        IToDoTaskService toDoTaskService,
-        ILoggerFactory loggerFactory,
-        HttpContext httpContext
+        Ok<GetToDoTaskDto>, NotFound, InternalServerError>> Get(
+            int id,
+            IToDoTaskService toDoTaskService,
+            ILoggerFactory loggerFactory,
+            HttpContext httpContext
         )
     {
         var logger = loggerFactory.CreateLogger(
