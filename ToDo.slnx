@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="Api/Api.csproj" />
+  <Project Path="ApiTests/ApiTests.csproj" Id="6d2bbe6e-aca9-4b18-b689-fe760255a929" />
   <Project Path="Application/Application.csproj" />
   <Project Path="Infrastructure/Infrastructure.csproj" />
 </Solution>
