@@ -1,13 +1,13 @@
 # ASP.NET Core Minimal API for complete beginners course - Code examples
 
-This repository contains the source code examples for the videos featured in the [ASP.NET Core Minimal API for complete beginners course](https://www.roundthecode.com/min1).
+This repository contains the source code examples for the videos featured in the [ASP.NET Core Minimal API for complete beginners course](https://www.udemy.com/course/aspnet-core-minimal-apis-for-complete-beginners-net-10/?referralCode=09B0CE29D839E4DC6FA8).
 
 ## Code examples
 Each video that includes a code example has two corresponding branches:
 - `-begin`: The code state at the beginning of the video
 - `-end`: The code state at the end of the video
 
-You can watch [the video](https://www.udemy.com/course/6838899/learn/lecture/53513933) to determine which branch you need to download for the lesson you're following.
+You can watch [the video](https://www.udemy.com/course/6838899/learn/lecture/53513933/?referralCode=09B0CE29D839E4DC6FA8) to determine which branch you need to download for the lesson you're following.
 
 ## Download the database
 If you're following the course from the beginning, you'll learn how to create the database using Entity Framework Core migrations.
